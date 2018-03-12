@@ -1,30 +1,31 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const yosay = require('yosay');
-const vueInstall = require('./vue/install');
-const laravelInstall = require('./laravel/install');
-const fs = require('fs-extra');
+"use strict";
+
+const Generator = require("yeoman-generator");
+const yosay = require("yosay");
+const vueInstall = require("./vue/install");
+const laravelInstall = require("./laravel/install");
+const fs = require("fs-extra");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    this.argument('name', {
+    this.argument("name", {
       type: String,
       required: false,
-      desc: 'Your app name'
+      desc: "Your app name"
     });
 
-    this.option('laravel', {
-      desc: 'Install Laravel',
+    this.option("laravel", {
+      desc: "Install Laravel",
       type: Boolean,
       default: false,
-      alias: 'L'
+      alias: "L"
     });
 
     // Temporary install dirs
-    this.vueInstallPath = '_vue-install';
-    this.laravelInstallPath = '_laravel-install';
+    this.vueInstallPath = "_vue-install";
+    this.laravelInstallPath = "_laravel-install";
   }
 
   /**
@@ -32,7 +33,7 @@ module.exports = class extends Generator {
    * @see http://yeoman.io/authoring/running-context.html
    */
   initializing() {
-    this.log('Initializing generator');
+    this.log("Initializing generator");
 
     // Remove previous install dirs if needed
     this._removeInstallDir(this.destinationPath(this.vueInstallPath));
@@ -46,7 +47,7 @@ module.exports = class extends Generator {
   }
 
   configuring() {
-    this.log('Configuring generator');
+    this.log("Configuring generator");
   }
 
   /**
@@ -64,7 +65,7 @@ module.exports = class extends Generator {
    * Copy any needed files, substituting placeholders when needed
    */
   writing() {
-    this.log('Writing files');
+    this.log("Writing files");
     // this.fs.copyTpl(
     //   this.templatePath('project/_README.MD'),
     //   this.destinationPath('README.MD'),
@@ -82,7 +83,7 @@ module.exports = class extends Generator {
    * Write/edit files here *composer.json, package.json etc)
    */
   end() {
-    this.log('Setup is now finished. Enjoy developing! ://');
+    this.log("Setup is now finished. Enjoy developing! ://");
   }
 
   /**
@@ -109,7 +110,7 @@ module.exports = class extends Generator {
    */
   _handleLaravelInstall() {
     if (this.options.laravel === false) {
-      this.log('Skipping Laravel installation');
+      this.log("Skipping Laravel installation");
     } else {
       laravelInstall(this);
     }

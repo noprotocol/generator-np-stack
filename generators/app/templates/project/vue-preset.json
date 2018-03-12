@@ -5,10 +5,7 @@
     "@vue/cli-plugin-pwa": {},
     "@vue/cli-plugin-eslint": {
       "config": "prettier",
-      "lintOn": [
-        "save",
-        "commit"
-      ]
+      "lintOn": ["save", "commit"]
     },
     "@vue/cli-plugin-unit-jest": {},
     "@vue/cli-plugin-e2e-cypress": {}
