@@ -23,6 +23,7 @@ module.exports = function(generator) {
     cwd: "_frontend"
   });
 
-  // Remove the by default generated .git folder
+  // Remove the by default generated .git folder and .gitignore
   fs.removeSync("_frontend/.git/");
+  fs.removeSync("_frontend/.gitignore");
 };
