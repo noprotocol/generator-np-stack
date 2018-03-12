@@ -26,7 +26,7 @@ module.exports = class extends Generator {
 
     // Temporary install dirs
     this.vueInstallPath = "_vue-install";
-    this.laravelInstallPath = "_laravel-install";
+    this.laravelInstallPath = "_backend";
   }
 
   /**
@@ -43,7 +43,6 @@ module.exports = class extends Generator {
 
   prompting() {
     return this.prompt(prompts(this)).then(answers => {
-      // this.props = props;
       this.answers = answers;
     });
   }
@@ -59,8 +58,14 @@ module.exports = class extends Generator {
    * This way, we can install them and replace all the config files afterwards.
    */
   default() {
-    this._handleVueInstall();
-    this._handleLaravelInstall();
+    switch (this.answers.stack) {
+      case "laravue":
+        // this._handleVueInstall();
+        laravelInstall(this);
+        break;
+    }
+    // this._handleVueInstall();
+    // this._handleLaravelInstall();
   }
 
   /**
@@ -98,23 +103,5 @@ module.exports = class extends Generator {
         fs.remove(this.destinationPath(path));
       }
     });
-  }
-
-  /**
-   * Call the Vue installer
-   */
-  _handleVueInstall() {
-    vueInstall(this);
-  }
-
-  /**
-   * Call the Laravel installer if needed
-   */
-  _handleLaravelInstall() {
-    if (this.options.laravel === false) {
-      this.log("Skipping Laravel installation");
-    } else {
-      laravelInstall(this);
-    }
   }
 };
