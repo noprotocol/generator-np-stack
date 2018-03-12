@@ -35,10 +35,6 @@ module.exports = class extends Generator {
    */
   initializing() {
     this.log("Initializing generator");
-
-    // Remove previous install dirs if needed
-    // this._removeInstallDir(this.destinationPath(this.vueInstallPath));
-    // this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
   }
 
   prompting() {
@@ -49,6 +45,10 @@ module.exports = class extends Generator {
 
   configuring() {
     this.log("Configuring generator");
+
+    // Remove previous install dirs if needed
+    this._removeInstallDir(this.destinationPath(this.vueInstallPath));
+    this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
   }
 
   /**
@@ -60,8 +60,9 @@ module.exports = class extends Generator {
   default() {
     switch (this.answers.stack) {
       case "laravue":
+        console.log(this.answers);
         // vueInstall(this);
-        laravelInstall(this);
+        // laravelInstall(this);
         // this.craftLaravue();
         break;
     }
@@ -104,7 +105,7 @@ module.exports = class extends Generator {
     });
   }
 
-  craftLaravue() {
+  _craftLaravue() {
     fs.ensureDirSync("app");
     this.spawnCommandSync("cp", ["-R", "_backend/", "app"]);
     this.spawnCommandSync("cp", ["-R", "_frontend/", "app"]);
