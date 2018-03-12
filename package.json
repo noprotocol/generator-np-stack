@@ -1,36 +1,36 @@
 {
   "name": "generator-np-stack",
-  "version": "0.0.0",
-  "description": "",
-  "homepage": "",
+  "version": "0.0.1",
+  "description": "Generator NP Stack",
+  "homepage": "https://noprotocol.nl",
   "author": {
     "name": "Govert Verschuur",
     "email": "govert@noprotocol.nl",
-    "url": ""
+    "url": "https://noprotocol.nl"
   },
-  "files": [
-    "generators"
+  "contributors": [
+    "Stef van den Ham <stef@mindthecode.com> (https://mindthecode.com/)"
   ],
+  "files": ["generators"],
   "main": "generators/index.js",
-  "keywords": [
-    "",
-    "yeoman-generator"
-  ],
+  "keywords": ["", "yeoman-generator"],
   "devDependencies": {
-    "yeoman-test": "^1.7.0",
-    "yeoman-assert": "^3.1.0",
-    "nsp": "^2.6.3",
     "eslint": "^4.1.0",
-    "prettier": "^1.7.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^4.2.1",
-    "eslint-config-prettier": "^2.4.0",
-    "eslint-plugin-prettier": "^2.2.0",
     "eslint-config-xo": "^0.18.2",
-    "jest": "^22.0.6"
+    "eslint-plugin-prettier": "^2.2.0",
+    "husky": "^0.14.3",
+    "jest": "^22.0.6",
+    "lint-staged": "^4.2.1",
+    "nsp": "^2.6.3",
+    "prettier": "^1.7.0",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-test": "^1.7.0"
   },
   "dependencies": {
+    "@vue/eslint-config-prettier": "^3.0.0-beta.6",
     "chalk": "^2.1.0",
+    "eslint-plugin-only-warn": "^1.0.1",
+    "eslint-plugin-vue": "^4.3.0",
     "fs-extra": "^5.0.0",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
@@ -45,36 +45,19 @@
     "test": "jest ./__tests__"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "git add"],
+    "*.json": ["prettier --write", "git add"]
   },
   "eslintConfig": {
-    "extends": [
-      "xo",
-      "prettier"
-    ],
+    "root": true,
     "env": {
-      "jest": true,
       "node": true
     },
+    "extends": ["plugin:vue/recommended", "@vue/prettier"],
+    "plugins": ["vue", "only-warn"],
     "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true,
-          "printWidth": 90
-        }
-      ]
-    },
-    "plugins": [
-      "prettier"
-    ]
+      "vue/max-attributes-per-line": "off"
+    }
   },
   "repository": "noprotocol/generator-np-stack",
   "license": "MIT"
