@@ -25,7 +25,7 @@ module.exports = class extends Generator {
     });
 
     // Temporary install dirs
-    this.vueInstallPath = "_vue-install";
+    this.vueInstallPath = "_frontend";
     this.laravelInstallPath = "_backend";
   }
 
@@ -60,8 +60,8 @@ module.exports = class extends Generator {
   default() {
     switch (this.answers.stack) {
       case "laravue":
-        // this._handleVueInstall();
-        laravelInstall(this);
+        vueInstall(this);
+        // laravelInstall(this);
         break;
     }
     // this._handleVueInstall();
