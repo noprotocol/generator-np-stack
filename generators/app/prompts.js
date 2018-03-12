@@ -7,16 +7,12 @@ module.exports = function(generator) {
   // Define the possible app types
   const appTypes = [
     {
-      name: "Vue",
+      name: "Vue Only",
       value: "vue"
     },
     {
-      name: "Laravel",
-      value: "laravel"
-    },
-    {
-      name: "Mix",
-      value: "mix"
+      name: "Laravel + Vue",
+      value: "laravue"
     }
   ];
 
@@ -26,6 +22,20 @@ module.exports = function(generator) {
       type: "text",
       name: "name",
       message: "App name",
+      default: generator.appname,
+      required: true,
+      when: function() {
+        if (typeof generator.options.name !== "undefined") {
+          return false;
+        }
+        return true;
+      }
+    },
+    {
+      type: "list",
+      name: "stack",
+      message: "What Stack would you like to use?",
+      choices: appTypes,
       default: generator.appname,
       required: true,
       when: function() {
