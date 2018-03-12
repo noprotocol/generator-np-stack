@@ -5,24 +5,12 @@ const Generator = require("yeoman-generator");
 const vueInstall = require("./vue/install");
 const laravelInstall = require("./laravel/install");
 const fs = require("fs-extra");
+const path = require("path");
 const prompts = require("./prompts");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-
-    this.argument("name", {
-      type: String,
-      required: false,
-      desc: "Your app name"
-    });
-
-    this.option("laravel", {
-      desc: "Install Laravel",
-      type: Boolean,
-      default: false,
-      alias: "L"
-    });
 
     // Temporary install dirs
     this.vueInstallPath = "_frontend";
@@ -46,9 +34,17 @@ module.exports = class extends Generator {
   configuring() {
     this.log("Configuring generator");
 
+    fs.ensureDirSync(this.answers.name);
+
     // Remove previous install dirs if needed
-    this._removeInstallDir(this.destinationPath(this.vueInstallPath));
-    this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
+    this._removeInstallDir(
+      this.destinationPath(path.resolve(this.answers.name, this.vueInstallPath))
+    );
+    this._removeInstallDir(
+      this.destinationPath(
+        path.resolve(this.answers.name, this.laravelInstallPath)
+      )
+    );
   }
 
   /**
@@ -60,10 +56,9 @@ module.exports = class extends Generator {
   default() {
     switch (this.answers.stack) {
       case "laravue":
-        console.log(this.answers);
-        // vueInstall(this);
-        // laravelInstall(this);
-        // this.craftLaravue();
+        vueInstall(this);
+        laravelInstall(this);
+        this._craftLaravue();
         break;
     }
   }
@@ -73,11 +68,10 @@ module.exports = class extends Generator {
    */
   writing() {
     this.log("Writing files");
-    // this.fs.copyTpl(
-    //   this.templatePath('project/_README.MD'),
-    //   this.destinationPath('README.MD'),
-    //   { APPNAME: this.options.name }
-    // );
+    this.fs.copyTpl(
+      this.templatePath("project/_.gitignore"),
+      this.destinationPath(path.resolve(this.answers.name, ".gitignore"))
+    );
   }
 
   /**
@@ -90,6 +84,20 @@ module.exports = class extends Generator {
    * Write/edit files here *composer.json, package.json etc)
    */
   end() {
+    // Create a fresh repository
+    this.spawnCommandSync("git", ["init"], {
+      cwd: this.answers.name
+    });
+
+    // Add everything
+    this.spawnCommandSync("git", ["add", "."], {
+      cwd: this.answers.name
+    });
+
+    // Commit it
+    this.spawnCommandSync("git", ["commit", "-m", "init"], {
+      cwd: this.answers.name
+    });
     this.log("Setup is now finished. Enjoy developing! ://");
   }
 
@@ -106,8 +114,19 @@ module.exports = class extends Generator {
   }
 
   _craftLaravue() {
-    fs.ensureDirSync("app");
-    this.spawnCommandSync("cp", ["-R", "_backend/", "app"]);
-    this.spawnCommandSync("cp", ["-R", "_frontend/", "app"]);
+    this.spawnCommandSync("cp", [
+      "-R",
+      this.answers.name + "/_frontend/",
+      this.answers.name
+    ]);
+    this.spawnCommandSync("cp", [
+      "-R",
+      this.answers.name + "/_backend/",
+      this.answers.name
+    ]);
+
+    // Remove intermediate folders
+    fs.removeSync(path.resolve(this.answers.name, "_frontend"));
+    fs.removeSync(path.resolve(this.answers.name, "_backend"));
   }
 };
