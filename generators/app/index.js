@@ -38,7 +38,7 @@ module.exports = class extends Generator {
 
     // Remove previous install dirs if needed
     // this._removeInstallDir(this.destinationPath(this.vueInstallPath));
-    // this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
+    this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
   }
 
   prompting() {
@@ -60,12 +60,10 @@ module.exports = class extends Generator {
   default() {
     switch (this.answers.stack) {
       case "laravue":
-        vueInstall(this);
-        // laravelInstall(this);
+        // vueInstall(this);
+        laravelInstall(this);
         break;
     }
-    // this._handleVueInstall();
-    // this._handleLaravelInstall();
   }
 
   /**
