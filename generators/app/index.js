@@ -1,7 +1,7 @@
 "use strict";
 
 const Generator = require("yeoman-generator");
-const yosay = require("yosay");
+// const yosay = require("yosay");
 const vueInstall = require("./vue/install");
 const laravelInstall = require("./laravel/install");
 const fs = require("fs-extra");
@@ -44,7 +44,7 @@ module.exports = class extends Generator {
   prompting() {
     return this.prompt(prompts(this)).then(answers => {
       // this.props = props;
-      console.log(answers);
+      this.answers = answers;
     });
   }
 
