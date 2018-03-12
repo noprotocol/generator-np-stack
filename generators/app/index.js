@@ -38,7 +38,7 @@ module.exports = class extends Generator {
 
     // Remove previous install dirs if needed
     // this._removeInstallDir(this.destinationPath(this.vueInstallPath));
-    this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
+    // this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
   }
 
   prompting() {
@@ -62,6 +62,7 @@ module.exports = class extends Generator {
       case "laravue":
         // vueInstall(this);
         laravelInstall(this);
+        // this.craftLaravue();
         break;
     }
   }
@@ -101,5 +102,11 @@ module.exports = class extends Generator {
         fs.remove(this.destinationPath(path));
       }
     });
+  }
+
+  craftLaravue() {
+    fs.ensureDirSync("app");
+    this.spawnCommandSync("cp", ["-R", "_backend/", "app"]);
+    this.spawnCommandSync("cp", ["-R", "_frontend/", "app"]);
   }
 };
