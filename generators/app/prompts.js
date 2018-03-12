@@ -1,6 +1,4 @@
-/**
- * Deprecated
- */
+const slugify = require("slugify");
 // const _ = require("lodash");
 
 module.exports = function(generator) {
@@ -29,6 +27,13 @@ module.exports = function(generator) {
           return false;
         }
         return true;
+      },
+      filter: function(input) {
+        return slugify(input, {
+          replacement: "_",
+          remove: /[$*_+~.()'"!\-:@]/g,
+          lower: true
+        });
       }
     },
     {
