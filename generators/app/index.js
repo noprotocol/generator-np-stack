@@ -5,6 +5,7 @@ const yosay = require("yosay");
 const vueInstall = require("./vue/install");
 const laravelInstall = require("./laravel/install");
 const fs = require("fs-extra");
+const prompts = require("./prompts");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -36,14 +37,15 @@ module.exports = class extends Generator {
     this.log("Initializing generator");
 
     // Remove previous install dirs if needed
-    this._removeInstallDir(this.destinationPath(this.vueInstallPath));
-    this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
+    // this._removeInstallDir(this.destinationPath(this.vueInstallPath));
+    // this._removeInstallDir(this.destinationPath(this.laravelInstallPath));
   }
 
   prompting() {
-    // return this.prompt(prompts(this)).then(props => {
-    //   this.props = props;
-    // });
+    return this.prompt(prompts(this)).then(answers => {
+      // this.props = props;
+      console.log(answers);
+    });
   }
 
   configuring() {
