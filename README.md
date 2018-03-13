@@ -1,36 +1,33 @@
-# generator-np-stack [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-np-stack
+
 >
 
-## Installation
+## Usage
 
-First, install [Yeoman](http://yeoman.io) and generator-np-stack using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-np-stack (we assume you have pre-installed [node.js](https://nodejs.org/)):
 
 ```bash
 npm install -g yo
-npm install -g generator-np-stack
+npm install -g noprotocol/generator-np-stack
 ```
 
 Then generate your new project:
 
 ```bash
-yo np-dev-stack
+yo np-stack
 ```
 
-## Getting To Know Yeoman
+Give your project a sensible name, and choose your desired Stack.
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+## Contributing to the generator
 
-## License
+If you want to contribute to the generator the best thing to do is to follow these steps:
 
-MIT © [Govert Verschuur]()
+```bash
+npm uninstall -g generator-np-stack
+git clone git@github.com:noprotocol/generator-np-stack.git
+cd generator-np-stack
+npm link
+```
 
-
-[npm-image]: https://badge.fury.io/js/generator-np-stack.svg
-[npm-url]: https://npmjs.org/package/generator-np-stack
-[travis-image]: https://travis-ci.org/verschuur/generator-np-stack.svg?branch=master
-[travis-url]: https://travis-ci.org/verschuur/generator-np-stack
-[daviddm-image]: https://david-dm.org/verschuur/generator-np-stack.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/verschuur/generator-np-stack
+This way you can work locally on the generator, and test your changes by running the `yo` command as usual.
