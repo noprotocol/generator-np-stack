@@ -1,6 +1,6 @@
 {
   "name": "projectname",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve --open",
@@ -8,7 +8,7 @@
     "build": "vue-cli-service build",
     "test": "vue-csli-service test",
     "e2e": "vue-cli-service e2e",
-    "lint": "vue-cli-dservice lint",
+    "lint": "vue-cli-service lint",
     "e2e:open": "vue-cli-service e2e:open"
   },
   "dependencies": {
@@ -28,17 +28,45 @@
     "@vue/test-utils": "^1.0.0-beta.10",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.0.4",
+    "eslint": "^4.18.2",
+    "eslint-config-esnext": "^2.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-recommended": "^2.0.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-only-warn": "^1.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-vue": "^4.3.0",
     "lint-staged": "^6.0.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13"
   },
   "babel": {
-    "presets": ["@vue/app"]
+    "presets": ["@vue/app"],
+    "env": {
+      "test": {
+        "plugins": ["babel-plugin-transform-es2015-modules-commonjs"]
+      }
+    }
   },
   "eslintConfig": {
     "root": true,
-    "extends": ["plugin:vue/essential", "@vue/prettier"]
+    "extends": ["recommended/esnext", "plugin:vue/essential", "@vue/prettier"],
+    "env": {
+      "browser": true,
+      "jest": true
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "plugins": ["vue", "only-warn"],
+    "rules": {
+      "vue/max-attributes-per-line": 0
+    },
+    "globals": {
+      "process": true
+    }
   },
   "postcss": {
     "plugins": {
@@ -55,7 +83,8 @@
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
     },
-    "snapshotSerializers": ["jest-serializer-vue"]
+    "snapshotSerializers": ["jest-serializer-vue"],
+    "roots": ["src"]
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
