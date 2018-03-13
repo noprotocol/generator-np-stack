@@ -81,9 +81,6 @@ module.exports = class extends Generator {
    * Install dependencies, different files etc
    */
   install() {
-    // this.spawnCommand("yarn", ["install"], {
-    //   cwd: this.answers.name
-    // });
     this.yarnInstall([], {
       cwd: this.answers.name
     });
