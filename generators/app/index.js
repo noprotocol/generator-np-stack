@@ -55,6 +55,8 @@ module.exports = class extends Generator {
         fs.removeSync(path.resolve(this.answers.name, ".gitignore"));
 
         break;
+      case "vue":
+        break;
     }
   }
 
