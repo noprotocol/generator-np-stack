@@ -105,10 +105,12 @@ module.exports = class extends Generator {
     this.spawnCommandSync("git", ["commit", "-m", "init"], {
       cwd: this.answers.name
     });
+
     this.log("Setup is now finished. Enjoy developing! ://");
   }
 
   /**
+   * DEPRECATED
    * Delete previous temp install dirs for Laravel and Vue
    */
   _removeInstallDir(path) {
