@@ -2,8 +2,6 @@
 
 const Generator = require("yeoman-generator");
 // const yosay = require("yosay");
-const vueInstall = require("./vue/install");
-const laravelInstall = require("./laravel/install");
 const fs = require("fs-extra");
 const path = require("path");
 const prompts = require("./prompts");
@@ -37,14 +35,14 @@ module.exports = class extends Generator {
     fs.ensureDirSync(this.answers.name);
 
     // Remove previous install dirs if needed
-    this._removeInstallDir(
-      this.destinationPath(path.resolve(this.answers.name, this.vueInstallPath))
-    );
-    this._removeInstallDir(
-      this.destinationPath(
-        path.resolve(this.answers.name, this.laravelInstallPath)
-      )
-    );
+    // this._removeInstallDir(
+    //   this.destinationPath(path.resolve(this.answers.name, this.vueInstallPath))
+    // );
+    // this._removeInstallDir(
+    //   this.destinationPath(
+    //     path.resolve(this.answers.name, this.laravelInstallPath)
+    //   )
+    // );
   }
 
   /**
@@ -56,9 +54,19 @@ module.exports = class extends Generator {
   default() {
     switch (this.answers.stack) {
       case "laravue":
-        vueInstall(this);
-        laravelInstall(this);
-        this._craftLaravue();
+        this.spawnCommandSync("composer", [
+          "create-project",
+          "--prefer-dist",
+          "laravel/laravel",
+          this.answers.name
+        ]);
+
+        // Remove the generated package.json
+        fs.removeSync(path.resolve(this.answers.name, "package.json"));
+
+        // Remove the generated .gitignore file
+        fs.removeSync(path.resolve(this.answers.name, ".gitignore"));
+
         break;
     }
   }
@@ -68,7 +76,13 @@ module.exports = class extends Generator {
    */
   writing() {
     this.log("Writing files");
-    this.fs.copyTpl(
+
+    this.fs.copy(
+      this.templatePath("vue"),
+      this.destinationPath(this.answers.name)
+    );
+
+    this.fs.copy(
       this.templatePath("project/_.gitignore"),
       this.destinationPath(path.resolve(this.answers.name, ".gitignore"))
     );
@@ -111,22 +125,5 @@ module.exports = class extends Generator {
         fs.remove(this.destinationPath(path));
       }
     });
-  }
-
-  _craftLaravue() {
-    this.spawnCommandSync("cp", [
-      "-R",
-      this.answers.name + "/_frontend/",
-      this.answers.name
-    ]);
-    this.spawnCommandSync("cp", [
-      "-R",
-      this.answers.name + "/_backend/",
-      this.answers.name
-    ]);
-
-    // Remove intermediate folders
-    fs.removeSync(path.resolve(this.answers.name, "_frontend"));
-    fs.removeSync(path.resolve(this.answers.name, "_backend"));
   }
 };

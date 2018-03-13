@@ -8,7 +8,14 @@ module.exports = function(generator) {
   // Generate vue cli app based on NoProtocol preset
   generator.spawnCommandSync(
     "vue",
-    ["create", "--inlinePreset", JSON.stringify(preset), "-f", "_frontend"],
+    [
+      "create",
+      "--inlinePreset",
+      JSON.stringify(preset),
+      "-f",
+      "--no-verify",
+      "_frontend"
+    ],
     {
       cwd: generator.answers.name
     }
