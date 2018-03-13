@@ -1,18 +1,15 @@
 "use strict";
 
 const Generator = require("yeoman-generator");
-// const yosay = require("yosay");
+
 const fs = require("fs-extra");
 const path = require("path");
+
 const prompts = require("./prompts");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-
-    // Temporary install dirs
-    this.vueInstallPath = "_frontend";
-    this.laravelInstallPath = "_backend";
   }
 
   /**
@@ -20,7 +17,7 @@ module.exports = class extends Generator {
    * @see http://yeoman.io/authoring/running-context.html
    */
   initializing() {
-    this.log("Initializing generator");
+    this.log("Initializing Generator");
   }
 
   prompting() {
@@ -30,19 +27,9 @@ module.exports = class extends Generator {
   }
 
   configuring() {
-    this.log("Configuring generator");
+    this.log("Configuring Generator");
 
-    fs.ensureDirSync(this.answers.name);
-
-    // Remove previous install dirs if needed
-    // this._removeInstallDir(
-    //   this.destinationPath(path.resolve(this.answers.name, this.vueInstallPath))
-    // );
-    // this._removeInstallDir(
-    //   this.destinationPath(
-    //     path.resolve(this.answers.name, this.laravelInstallPath)
-    //   )
-    // );
+    // TODO: Check if target dir already exists
   }
 
   /**
@@ -77,11 +64,13 @@ module.exports = class extends Generator {
   writing() {
     this.log("Writing files");
 
+    // Copy the frontend folder into the target
     this.fs.copy(
       this.templatePath("vue"),
       this.destinationPath(this.answers.name)
     );
 
+    // Copy the gitignore into the target
     this.fs.copy(
       this.templatePath("project/_.gitignore"),
       this.destinationPath(path.resolve(this.answers.name, ".gitignore"))
@@ -91,7 +80,14 @@ module.exports = class extends Generator {
   /**
    * Install dependencies, different files etc
    */
-  install() {}
+  install() {
+    // this.spawnCommand("yarn", ["install"], {
+    //   cwd: this.answers.name
+    // });
+    this.yarnInstall([], {
+      cwd: this.answers.name
+    });
+  }
 
   /**
    * Last function the yeoman context run
