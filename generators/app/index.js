@@ -17,7 +17,11 @@ module.exports = class extends Generator {
    * @see http://yeoman.io/authoring/running-context.html
    */
   initializing() {
-    this.log("Initializing Generator");
+    this.log("     _  __     ___           __                __");
+    this.log("    / |/ /__  / _ \\_______  / /____  _______  / /");
+    this.log("   /    / _ \\/ ___/ __/ _ \\/ __/ _ \\/ __/ _ \\/ / ");
+    this.log("  /_/|_/\\___/_/  /_/  \\___/\\__/\\___/\\__/\\___/_/");
+    this.log("");
   }
 
   prompting() {
