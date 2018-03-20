@@ -9,5 +9,7 @@ const modules = { example };
 
 export default new Vuex.Store({
   strict: true,
-  modules
+  modules: modules.map(module => {
+    (module.strict = true), (module.namespaced = true);
+  })
 });
