@@ -58,6 +58,21 @@ module.exports = class extends Generator {
         // Remove the generated .gitignore file
         fs.removeSync(path.resolve(this.answers.name, ".gitignore"));
 
+        // Chmod for apache users (don't want to include the recursive version)
+        [
+          "bootstrap/cache",
+          "storage",
+          "storage/app",
+          "storage/app/public",
+          "storage/logs",
+          "storage/framework",
+          "storage/framework/cache",
+          "storage/framework/sessions",
+          "storage/framework/testing",
+          "storage/framework/views"
+        ].forEach(folder => {
+          fs.chmodSync(path.resolve(this.answers.name, folder), 0o777);
+        });
         break;
       case "vue":
         break;

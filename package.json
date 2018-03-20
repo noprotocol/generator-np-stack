@@ -9,7 +9,8 @@
     "url": "https://noprotocol.nl"
   },
   "contributors": [
-    "Stef van den Ham <stef@mindthecode.com> (https://mindthecode.com/)"
+    "Stef van den Ham <stef@mindthecode.com> (https://mindthecode.com/)",
+    "Anne Jan Brouwer <brouwer@annejan.com> (https://annejan.com/)"
   ],
   "files": ["generators"],
   "main": "generators/index.js",
