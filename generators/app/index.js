@@ -4,6 +4,7 @@ const Generator = require("yeoman-generator");
 
 const fs = require("fs-extra");
 const path = require("path");
+const replace = require('replace-in-file');
 
 const prompts = require("./prompts");
 
@@ -129,6 +130,22 @@ module.exports = class extends Generator {
         PROJECT_NAME: this.answers.name
       }
     );
+
+    // Update Laravel's .env and .env.example setting
+    const changes = replace.sync({
+      files: [
+        path.resolve(this.answers.name, ".env"),
+        path.resolve(this.answers.name, ".env.example")
+      ],
+      from: [
+        /APP_NAME=Laravel/g,
+        /LOG_CHANNEL=stack/g
+      ],
+      to: [
+        `APP_NAME="${this.answers.name}"`,
+        'LOG_CHANNEL=daily'
+      ]
+    });
   }
 
   /**
