@@ -4,7 +4,7 @@ const Generator = require("yeoman-generator");
 
 const fs = require("fs-extra");
 const path = require("path");
-const replace = require('replace-in-file');
+const replace = require("replace-in-file");
 
 const prompts = require("./prompts");
 
@@ -60,7 +60,9 @@ module.exports = class extends Generator {
         fs.removeSync(path.resolve(this.answers.name, "resources/assets"));
 
         // Remove Laravel's default view
-        fs.removeSync(path.resolve(this.answers.name, "resources/views/welcome.blade.php"));
+        fs.removeSync(
+          path.resolve(this.answers.name, "resources/views/welcome.blade.php")
+        );
 
         // Remove Laravel's default readme.
         fs.removeSync(path.resolve(this.answers.name, "readme.md"));
@@ -99,10 +101,7 @@ module.exports = class extends Generator {
     this.log("Writing files");
 
     // Copy the frontend folder into the target
-    fs.copy(
-      this.templatePath("vue"),
-      this.destinationPath(this.answers.name)
-    );
+    fs.copy(this.templatePath("vue"), this.destinationPath(this.answers.name));
 
     // Copy the gitignore into the target
     fs.copy(
@@ -113,7 +112,12 @@ module.exports = class extends Generator {
     // Copy the WebsiteController.php
     fs.copy(
       this.templatePath("laravel/app/Http/Controllers/_WebsiteController.php"),
-      this.destinationPath(path.resolve(this.answers.name, "app/Http/Controllers/WebsiteController.php"))
+      this.destinationPath(
+        path.resolve(
+          this.answers.name,
+          "app/Http/Controllers/WebsiteController.php"
+        )
+      )
     );
 
     // Overwrite Laravel's web.php routes with the generator's web.php
@@ -125,26 +129,20 @@ module.exports = class extends Generator {
     // Overwrite Laravel's web.php routes with the generator's web.php
     this.fs.copyTpl(
       this.templatePath("project/_readme.md"),
-      this.destinationPath(path.resolve(this.answers.name, "readme.md"))
-      , {
+      this.destinationPath(path.resolve(this.answers.name, "readme.md")),
+      {
         PROJECT_NAME: this.answers.name
       }
     );
 
     // Update Laravel's .env and .env.example setting
-    const changes = replace.sync({
+    replace.sync({
       files: [
         path.resolve(this.answers.name, ".env"),
         path.resolve(this.answers.name, ".env.example")
       ],
-      from: [
-        /APP_NAME=Laravel/g,
-        /LOG_CHANNEL=stack/g
-      ],
-      to: [
-        `APP_NAME="${this.answers.name}"`,
-        'LOG_CHANNEL=daily'
-      ]
+      from: [/APP_NAME=Laravel/g, /LOG_CHANNEL=stack/g],
+      to: [`APP_NAME="${this.answers.name}"`, "LOG_CHANNEL=daily"]
     });
   }
 
