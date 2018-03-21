@@ -95,15 +95,27 @@ module.exports = class extends Generator {
     this.log("Writing files");
 
     // Copy the frontend folder into the target
-    this.fs.copy(
+    fs.copy(
       this.templatePath("vue"),
       this.destinationPath(this.answers.name)
     );
 
     // Copy the gitignore into the target
-    this.fs.copy(
+    fs.copy(
       this.templatePath("project/_.gitignore"),
       this.destinationPath(path.resolve(this.answers.name, ".gitignore"))
+    );
+
+    // Copy the WebsiteController.php
+    fs.copy(
+      this.templatePath("laravel/app/Http/Controllers/_WebsiteController.php"),
+      this.destinationPath(path.resolve(this.answers.name, "app/Http/Controllers/WebsiteController.php"))
+    );
+
+    // Overwrite Laravel's web.php routes with the generator's web.php
+    fs.copy(
+      this.templatePath("laravel/routes/_web.php"),
+      this.destinationPath(path.resolve(this.answers.name, "routes/web.php"))
     );
   }
 
