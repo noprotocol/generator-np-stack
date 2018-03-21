@@ -61,6 +61,9 @@ module.exports = class extends Generator {
         // Remove Laravel's default view
         fs.removeSync(path.resolve(this.answers.name, "resources/views/welcome.blade.php"));
 
+        // Remove Laravel's default readme.
+        fs.removeSync(path.resolve(this.answers.name, "readme.md"));
+
         // Remove the generated package.json
         fs.removeSync(path.resolve(this.answers.name, "package.json"));
 
@@ -116,6 +119,15 @@ module.exports = class extends Generator {
     fs.copy(
       this.templatePath("laravel/routes/_web.php"),
       this.destinationPath(path.resolve(this.answers.name, "routes/web.php"))
+    );
+
+    // Overwrite Laravel's web.php routes with the generator's web.php
+    this.fs.copyTpl(
+      this.templatePath("project/_readme.md"),
+      this.destinationPath(path.resolve(this.answers.name, "readme.md"))
+      , {
+        PROJECT_NAME: this.answers.name
+      }
     );
   }
 
