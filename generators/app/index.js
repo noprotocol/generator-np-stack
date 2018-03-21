@@ -52,6 +52,15 @@ module.exports = class extends Generator {
           this.answers.name
         ]);
 
+        // Remove Laravel's webpack.
+        fs.removeSync(path.resolve(this.answers.name, "webpack.mix.js"));
+
+        // Remove Laravel's assets folders.
+        fs.removeSync(path.resolve(this.answers.name, "resources/assets"));
+
+        // Remove Laravel's default view
+        fs.removeSync(path.resolve(this.answers.name, "resources/views/welcome.blade.php"));
+
         // Remove the generated package.json
         fs.removeSync(path.resolve(this.answers.name, "package.json"));
 
