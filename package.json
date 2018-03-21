@@ -10,7 +10,8 @@
   },
   "contributors": [
     "Stef van den Ham <stef@mindthecode.com> (https://mindthecode.com/)",
-    "Anne Jan Brouwer <brouwer@annejan.com> (https://annejan.com/)"
+    "Anne Jan Brouwer <brouwer@annejan.com> (https://annejan.com/)",
+    "Bob Fanger <info@bfanger.nl> (https://bfanger.nl/)"
   ],
   "files": ["generators"],
   "main": "generators/index.js",
