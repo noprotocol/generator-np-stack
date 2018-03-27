@@ -13,16 +13,12 @@
     "Anne Jan Brouwer <brouwer@annejan.com> (https://annejan.com/)",
     "Bob Fanger <info@bfanger.nl> (https://bfanger.nl/)"
   ],
-  "files": [
-    "generators"
-  ],
+  "files": ["generators"],
   "main": "generators/index.js",
-  "keywords": [
-    "",
-    "yeoman-generator"
-  ],
+  "keywords": ["", "yeoman-generator"],
   "devDependencies": {
     "eslint": "^4.1.0",
+    "eslint-config-recommended": "^2.0.0",
     "eslint-config-xo": "^0.18.2",
     "eslint-plugin-prettier": "^2.2.0",
     "husky": "^0.14.3",
@@ -54,30 +50,21 @@
     "test": "jest ./__tests__"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "git add"],
+    "*.json": ["prettier --write", "git add"]
   },
   "eslintConfig": {
     "root": true,
     "env": {
       "node": true
     },
-    "extends": [
-      "plugin:vue/recommended",
-      "@vue/prettier"
-    ],
-    "plugins": [
-      "vue",
-      "only-warn"
-    ],
+    "extends": ["plugin:vue/recommended", "@vue/prettier"],
+    "plugins": ["vue", "only-warn"],
     "rules": {
-      "vue/max-attributes-per-line": "off"
+      "vue/max-attributes-per-line": "off",
+      "import/no-unresolved": "off",
+      "import/no-commonjs": "off",
+      "import/no-nodejs-modules": "off"
     }
   },
   "repository": "noprotocol/generator-np-stack",

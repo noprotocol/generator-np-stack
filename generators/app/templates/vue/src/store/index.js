@@ -1,7 +1,7 @@
 /* eslint-disable import/no-namespace */
 import Vue from "vue";
 import Vuex from "vuex";
-import * as example from "./exampleStore";
+import * as example from "./example";
 
 Vue.use(Vuex);
 

@@ -9,10 +9,6 @@ const replace = require("replace-in-file");
 const prompts = require("./prompts");
 
 module.exports = class extends Generator {
-  constructor(args, opts) {
-    super(args, opts);
-  }
-
   /**
    * Start the generator run context.
    * @see http://yeoman.io/authoring/running-context.html
@@ -102,6 +98,10 @@ module.exports = class extends Generator {
 
     // Copy the frontend folder into the target
     fs.copy(this.templatePath("vue"), this.destinationPath(this.answers.name));
+    this.fs.copy(
+      this.templatePath("vue/tests/e2e/.eslintrc"),
+      this.destinationPath(this.answers.name, "tests/e2e/.eslintrc")
+    );
 
     // Copy the gitignore into the target
     fs.copy(
@@ -175,7 +175,7 @@ module.exports = class extends Generator {
       cwd: this.answers.name
     });
 
-    this.log("Setup is now finished. Enjoy developing! ://");
+    this.log("\n✨ Setup is now finished. Enjoy developing! ://\n");
   }
 
   /**
