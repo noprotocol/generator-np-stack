@@ -1,6 +1,6 @@
 # generator-np-stack
 
->
+[![Build Status](https://www.travis-ci.org/noprotocol/generator-np-stack.svg?branch=master)](https://www.travis-ci.org/noprotocol/generator-np-stack)
 
 ## Usage
 

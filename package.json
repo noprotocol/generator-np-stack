@@ -13,14 +13,9 @@
     "Anne Jan Brouwer <brouwer@annejan.com> (https://annejan.com/)",
     "Bob Fanger <info@bfanger.nl> (https://bfanger.nl/)"
   ],
-  "files": [
-    "generators"
-  ],
+  "files": ["generators"],
   "main": "generators/index.js",
-  "keywords": [
-    "",
-    "yeoman-generator"
-  ],
+  "keywords": ["", "yeoman-generator"],
   "devDependencies": {
     "eslint": "^4.1.0",
     "eslint-config-recommended": "^2.0.0",
@@ -46,37 +41,34 @@
     "yosay": "^2.0.1"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "rootDir": "__tests__"
   },
   "scripts": {
     "prepublish": "nsp check",
     "pretest": "eslint .",
     "precommit": "lint-staged",
-    "test": "jest ./__tests__"
+    "test": "jest"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "git add"],
+    "*.json": ["prettier --write", "git add"]
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "jest": true
     },
     "extends": [
+      "esnext",
       "plugin:vue/recommended",
-      "@vue/prettier"
+      "plugin:prettier/recommended"
     ],
-    "plugins": [
-      "vue",
-      "only-warn"
-    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "plugins": ["only-warn"],
     "rules": {
       "vue/max-attributes-per-line": "off",
       "import/no-unresolved": "off",
