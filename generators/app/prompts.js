@@ -22,13 +22,13 @@ module.exports = function(generator) {
       message: "App name",
       default: generator.appname,
       required: true,
-      when: function() {
+      when() {
         if (typeof generator.options.name !== "undefined") {
           return false;
         }
         return true;
       },
-      filter: function(input) {
+      filter(input) {
         return slugify(input, {
           replacement: "_",
           remove: /[$*_+~.()'"!\-:@]/g,
@@ -43,7 +43,7 @@ module.exports = function(generator) {
       choices: appTypes,
       default: generator.appname,
       required: true,
-      when: function() {
+      when() {
         if (typeof generator.options.name !== "undefined") {
           return false;
         }

@@ -41,13 +41,14 @@
     "yosay": "^2.0.1"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "rootDir": "__tests__"
   },
   "scripts": {
     "prepublish": "nsp check",
     "pretest": "eslint .",
     "precommit": "lint-staged",
-    "test": "jest ./__tests__"
+    "test": "jest"
   },
   "lint-staged": {
     "*.js": ["eslint --fix", "git add"],
@@ -56,10 +57,18 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "jest": true
     },
-    "extends": ["plugin:vue/recommended", "@vue/prettier"],
-    "plugins": ["vue", "only-warn"],
+    "extends": [
+      "esnext",
+      "plugin:vue/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "plugins": ["only-warn"],
     "rules": {
       "vue/max-attributes-per-line": "off",
       "import/no-unresolved": "off",

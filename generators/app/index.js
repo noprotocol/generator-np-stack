@@ -109,41 +109,44 @@ module.exports = class extends Generator {
       this.destinationPath(path.resolve(this.answers.name, ".gitignore"))
     );
 
-    // Copy the WebsiteController.php
-    fs.copy(
-      this.templatePath("laravel/app/Http/Controllers/_WebsiteController.php"),
-      this.destinationPath(
-        path.resolve(
-          this.answers.name,
-          "app/Http/Controllers/WebsiteController.php"
+    if (this.answers.stack === "laravue") {
+      // Copy the WebsiteController.php
+      fs.copy(
+        this.templatePath(
+          "laravel/app/Http/Controllers/_WebsiteController.php"
+        ),
+        this.destinationPath(
+          path.resolve(
+            this.answers.name,
+            "app/Http/Controllers/WebsiteController.php"
+          )
         )
-      )
-    );
+      );
 
-    // Overwrite Laravel's web.php routes with the generator's web.php
-    fs.copy(
-      this.templatePath("laravel/routes/_web.php"),
-      this.destinationPath(path.resolve(this.answers.name, "routes/web.php"))
-    );
+      // Overwrite Laravel's web.php routes with the generator's web.php
+      fs.copy(
+        this.templatePath("laravel/routes/_web.php"),
+        this.destinationPath(path.resolve(this.answers.name, "routes/web.php"))
+      );
 
-    // Overwrite Laravel's web.php routes with the generator's web.php
+      // Update Laravel's .env and .env.example setting
+      replace.sync({
+        files: [
+          path.resolve(this.answers.name, ".env"),
+          path.resolve(this.answers.name, ".env.example")
+        ],
+        from: [/APP_NAME=Laravel/g, /LOG_CHANNEL=stack/g],
+        to: [`APP_NAME="${this.answers.name}"`, "LOG_CHANNEL=daily"]
+      });
+    }
+
     this.fs.copyTpl(
       this.templatePath("project/_readme.md"),
-      this.destinationPath(path.resolve(this.answers.name, "readme.md")),
+      this.destinationPath(path.resolve(this.answers.name, "Readme.md")),
       {
         PROJECT_NAME: this.answers.name
       }
     );
-
-    // Update Laravel's .env and .env.example setting
-    replace.sync({
-      files: [
-        path.resolve(this.answers.name, ".env"),
-        path.resolve(this.answers.name, ".env.example")
-      ],
-      from: [/APP_NAME=Laravel/g, /LOG_CHANNEL=stack/g],
-      to: [`APP_NAME="${this.answers.name}"`, "LOG_CHANNEL=daily"]
-    });
   }
 
   /**
