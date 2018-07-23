@@ -6,45 +6,45 @@
     "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "test": "vue-cli-service test --testMatch='<rootDir>/src/**.spec.js'",
+    "test": "vue-cli-service test:unit --testMatch='<rootDir>/src/**.spec.js'",
     "e2e": "vue-cli-service e2e",
     "lint": "vue-cli-service lint",
     "e2e:open": "vue-cli-service e2e:open",
-    "prepublish": "nsp check"
+    "prepublish": "prettier --write package.json"
   },
   "dependencies": {
-    "nsp": "^3.2.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.6",
-    "@vue/cli-plugin-e2e-cypress": "^3.0.0-beta.6",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.6",
-    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.6",
-    "@vue/cli-service": "^3.0.0-beta.6",
-    "@vue/test-utils": "^1.0.0-beta.10",
+    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
+    "@vue/cli-plugin-e2e-cypress": "^3.0.0-rc.5",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.5",
+    "@vue/cli-plugin-unit-jest": "^3.0.0-rc.5",
+    "@vue/cli-service": "^3.0.0-rc.5",
+    "@vue/test-utils": "^1.0.0-beta.21",
     "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.0.4",
-    "eslint": "^4.19.0",
+    "babel-jest": "^23.4.0",
+    "eslint": "^5.2.0",
+    "eslint-config-esnext": "^3.0.0",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-config-esnext": "^2.0.0",
-    "eslint-plugin-babel": "^4.1.2",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-only-warn": "^1.0.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-vue": "^4.3.0",
-    "lint-staged": "^6.0.0",
+    "lint-staged": "^7.1.2",
     "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
+    "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.16"
   },
   "babel": {
     "presets": ["@vue/app"],
     "env": {
       "test": {
-        "plugins": ["babel-plugin-transform-es2015-modules-commonjs"]
+        "plugins": ["@babel/transform-modules-commonjs"]
       }
     }
   },
@@ -75,7 +75,7 @@
       "autoprefixer": {}
     }
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "browserslist": ["> 1%", "last 2 versions", "IE >= 11"],
   "jest": {
     "moduleFileExtensions": ["js", "jsx", "json", "vue"],
     "transform": {
