@@ -24,7 +24,7 @@ class WebsiteController extends Controller
         $distFolderExists = file_exists(base_path('dist'));
         if (App::environment(['local','development'])) {
             if ($catchall !== null) {
-                return $this->serveDistFolder($catchall);
+                // return $this->serveDistFolder($catchall); // TODO: This breaks history mode?
             }
         }
         if ($distFolderExists === false) {
