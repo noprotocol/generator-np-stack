@@ -13,9 +13,14 @@
     "Anne Jan Brouwer <brouwer@annejan.com> (https://annejan.com/)",
     "Bob Fanger <info@bfanger.nl> (https://bfanger.nl/)"
   ],
-  "files": ["generators"],
+  "files": [
+    "generators"
+  ],
   "main": "generators/index.js",
-  "keywords": ["", "yeoman-generator"],
+  "keywords": [
+    "",
+    "yeoman-generator"
+  ],
   "devDependencies": {
     "eslint": "^4.1.0",
     "eslint-config-recommended": "^2.0.0",
@@ -51,8 +56,14 @@
     "test": "jest"
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "git add"],
-    "*.json": ["prettier --write", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "root": true,
@@ -68,7 +79,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "plugins": ["only-warn"],
+    "plugins": [
+      "only-warn"
+    ],
     "rules": {
       "vue/max-attributes-per-line": "off",
       "import/no-unresolved": "off",

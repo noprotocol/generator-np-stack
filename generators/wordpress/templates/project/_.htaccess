@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_URI} !^/dist/
+    RewriteCond %{REQUEST_URI} !^/cms/
+    RewriteRule (.*) /dist/$1
+
+</IfModule>
