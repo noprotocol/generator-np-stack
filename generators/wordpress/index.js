@@ -50,11 +50,6 @@ module.exports = class extends Generator {
 
   writing() {
     this.fs.copyTpl(
-      this.templatePath("project/_.htaccess"),
-      this.destinationPath(path.resolve("cms", ".htaccess"))
-    );
-
-    this.fs.copyTpl(
       this.templatePath("cms/_wp-config.php"),
       this.destinationPath(path.resolve("cms", "wp-config.php"))
     );
