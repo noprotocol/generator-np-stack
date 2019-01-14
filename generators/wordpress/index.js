@@ -4,9 +4,7 @@ const Generator = require("yeoman-generator");
 
 const prompts = require("./prompts");
 
-const fs = require("fs-extra");
 const path = require("path");
-const replace = require("replace-in-file");
 
 const crypto = require("crypto");
 

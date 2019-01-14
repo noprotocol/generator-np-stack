@@ -13,38 +13,44 @@
     "prepublish": "prettier --write package.json"
   },
   "dependencies": {
-    "vue": "^2.5.16",
-    "vue-router": "^3.0.1",
+    "vue": "^2.5.22",
+    "vue-router": "^3.0.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
-    "@vue/cli-plugin-e2e-cypress": "^3.0.0-rc.5",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.5",
-    "@vue/cli-plugin-unit-jest": "^3.0.0-rc.5",
-    "@vue/cli-service": "^3.0.0-rc.5",
-    "@vue/test-utils": "^1.0.0-beta.21",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^23.4.0",
-    "eslint": "^5.2.0",
-    "eslint-config-esnext": "^3.0.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-loader": "^2.1.0",
-    "eslint-plugin-babel": "^5.1.0",
-    "eslint-plugin-import": "^2.9.0",
+    "@vue/cli-plugin-babel": "^3.3.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.3.0",
+    "@vue/cli-plugin-eslint": "^3.3.0",
+    "@vue/cli-plugin-unit-jest": "^3.3.0",
+    "@vue/cli-service": "^3.3.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/test-utils": "^1.0.0-beta.28",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.12.0",
+    "eslint-config-esnext": "^4.0.0",
+    "eslint-config-prettier": "^3.4.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-only-warn": "^1.0.1",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-vue": "^4.3.0",
-    "lint-staged": "^7.1.2",
-    "node-sass": "^4.7.2",
-    "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.16"
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-vue": "^5.1.0",
+    "lint-staged": "^8.1.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.22"
   },
   "babel": {
-    "presets": ["@vue/app"],
+    "presets": [
+      "@vue/app"
+    ],
     "env": {
       "test": {
-        "plugins": ["@babel/transform-modules-commonjs"]
+        "plugins": [
+          "@babel/transform-modules-commonjs"
+        ]
       }
     }
   },
@@ -53,7 +59,7 @@
     "extends": [
       "esnext",
       "plugin:vue/recommended",
-      "plugin:prettier/recommended"
+      "@vue/prettier"
     ],
     "env": {
       "browser": true,
@@ -62,22 +68,27 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "plugins": ["only-warn"],
-    "rules": {
-      "vue/max-attributes-per-line": "off"
-    },
-    "globals": {
-      "process": true
-    }
+    "plugins": [
+      "only-warn"
+    ]
   },
   "postcss": {
     "plugins": {
       "autoprefixer": {}
     }
   },
-  "browserslist": ["> 1%", "last 2 versions", "IE >= 11"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "IE >= 11"
+  ],
   "jest": {
-    "moduleFileExtensions": ["js", "jsx", "json", "vue"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "vue"
+    ],
     "transform": {
       "^.+\\.vue$": "vue-jest",
       "^.+\\.jsx?$": "babel-jest"
@@ -85,14 +96,24 @@
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
     },
-    "snapshotSerializers": ["jest-serializer-vue"],
-    "roots": ["src"]
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "roots": [
+      "src"
+    ]
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": ["vue-cli-service lint", "git add"],
-    "*.vue": ["vue-cli-service lint", "git add"]
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
   }
 }

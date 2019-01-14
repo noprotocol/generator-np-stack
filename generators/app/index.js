@@ -1,7 +1,6 @@
 "use strict";
 
 const Generator = require("yeoman-generator");
-
 const fs = require("fs-extra");
 const path = require("path");
 const replace = require("replace-in-file");
@@ -66,6 +65,9 @@ module.exports = class extends Generator {
         // Remove the generated package.json
         fs.removeSync(path.resolve(this.answers.name, "package.json"));
 
+        fs.removeSync(path.resolve(this.answers.name, "routes/web.php"));
+        fs.removeSync(path.resolve(this.answers.name, ".editorconfig"));
+
         // Remove the generated .gitignore file
         fs.removeSync(path.resolve(this.answers.name, ".gitignore"));
 
@@ -97,21 +99,24 @@ module.exports = class extends Generator {
     this.log("Writing files");
 
     // Copy the frontend folder into the target
-    fs.copy(this.templatePath("vue"), this.destinationPath(this.answers.name));
+    this.fs.copy(
+      this.templatePath("vue"),
+      this.destinationPath(this.answers.name)
+    );
     this.fs.copy(
       this.templatePath("vue/tests/e2e/.eslintrc"),
       this.destinationPath(this.answers.name, "tests/e2e/.eslintrc")
     );
 
     // Copy the gitignore into the target
-    fs.copy(
+    this.fs.copy(
       this.templatePath("project/_.gitignore"),
       this.destinationPath(path.resolve(this.answers.name, ".gitignore"))
     );
 
     if (this.answers.stack === "laravue") {
       // Copy the WebsiteController.php
-      fs.copy(
+      this.fs.copy(
         this.templatePath(
           "laravel/app/Http/Controllers/_WebsiteController.php"
         ),
@@ -124,7 +129,7 @@ module.exports = class extends Generator {
       );
 
       // Overwrite Laravel's web.php routes with the generator's web.php
-      fs.copy(
+      this.fs.copy(
         this.templatePath("laravel/routes/_web.php"),
         this.destinationPath(path.resolve(this.answers.name, "routes/web.php"))
       );

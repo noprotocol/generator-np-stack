@@ -1,5 +1,3 @@
-const slugify = require("slugify");
-
 module.exports = function(generator) {
   // Define the various prompts
   const prompts = [

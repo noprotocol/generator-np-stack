@@ -22,29 +22,28 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "eslint": "^4.1.0",
-    "eslint-config-recommended": "^2.0.0",
-    "eslint-config-xo": "^0.18.2",
-    "eslint-plugin-prettier": "^2.2.0",
-    "husky": "^0.14.3",
-    "jest": "^22.0.6",
-    "lint-staged": "^4.2.1",
+    "eslint": "^5.12.0",
+    "eslint-config-recommended": "^4.0.0",
+    "eslint-config-xo": "^0.26.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^8.1.0",
     "nsp": "^3.2.1",
     "prettier": "^1.7.0",
     "yeoman-assert": "^3.1.0",
     "yeoman-test": "^1.7.0"
   },
   "dependencies": {
-    "@vue/eslint-config-prettier": "^3.0.0-beta.6",
+    "@vue/eslint-config-prettier": "^4.0.1",
     "chalk": "^2.1.0",
     "eslint-plugin-only-warn": "^1.0.1",
-    "eslint-plugin-vue": "^4.3.0",
-    "fs-extra": "^5.0.0",
+    "eslint-plugin-vue": "^5.1.0",
+    "fs-extra": "^7.0.1",
+    "merge": ">=1.2.1",
     "replace-in-file": "^3.2.0",
     "slugify": "^1.2.9",
-    "yeoman-generator": "^2.0.1",
-    "yosay": "^2.0.1",
-    "merge": ">=1.2.1"
+    "yeoman-generator": "^3.2.0",
+    "yosay": "^2.0.1"
   },
   "jest": {
     "testEnvironment": "node",
@@ -68,15 +67,16 @@
   },
   "eslintConfig": {
     "root": true,
-    "env": {
-      "node": true,
-      "jest": true
-    },
     "extends": [
       "esnext",
       "plugin:vue/recommended",
-      "plugin:prettier/recommended"
+      "@vue/prettier"
     ],
+    "env": {
+      "browser": true,
+      "jest": true,
+      "node": true
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     },
@@ -84,8 +84,6 @@
       "only-warn"
     ],
     "rules": {
-      "vue/max-attributes-per-line": "off",
-      "import/no-unresolved": "off",
       "import/no-commonjs": "off",
       "import/no-nodejs-modules": "off"
     }
