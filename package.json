@@ -26,9 +26,9 @@
     "eslint-config-recommended": "^4.0.0",
     "eslint-config-xo": "^0.26.0",
     "eslint-plugin-prettier": "^3.0.1",
+    "husky": "^1.3.1",
     "jest": "^23.6.0",
     "lint-staged": "^8.1.0",
-    "nsp": "^3.2.1",
     "prettier": "^1.7.0",
     "yeoman-assert": "^3.1.0",
     "yeoman-test": "^1.7.0"
@@ -50,10 +50,14 @@
     "rootDir": "__tests__"
   },
   "scripts": {
-    "prepublish": "nsp check",
+    "prepublish": "yarn audit",
     "pretest": "eslint .",
-    "precommit": "lint-staged",
     "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.js": [
