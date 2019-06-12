@@ -13,35 +13,35 @@
     "prepublish": "prettier --write package.json"
   },
   "dependencies": {
-    "vue": "^2.5.22",
-    "vue-router": "^3.0.2",
-    "vuex": "^3.0.1"
+    "vue": "2.6.10",
+    "vue-router": "3.0.6",
+    "vuex": "3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-plugin-e2e-cypress": "^3.3.0",
-    "@vue/cli-plugin-eslint": "^3.3.0",
-    "@vue/cli-plugin-unit-jest": "^3.3.0",
-    "@vue/cli-service": "^3.3.0",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "@vue/test-utils": "^1.0.0-beta.28",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.1.0",
-    "eslint": "^5.12.0",
-    "eslint-config-esnext": "^4.0.0",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-loader": "^2.1.1",
-    "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-only-warn": "^1.0.1",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-vue": "^5.1.0",
-    "lint-staged": "^8.1.0",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.22",
-    "yorkie": "^2.0.0"
+    "@vue/cli-plugin-babel": "3.8.0",
+    "@vue/cli-plugin-e2e-cypress": "3.8.0",
+    "@vue/cli-plugin-eslint": "3.8.0",
+    "@vue/cli-plugin-unit-jest": "3.8.0",
+    "@vue/cli-service": "3.8.0",
+    "@vue/eslint-config-prettier": "4.0.1",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "6.26.3",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "24.8.0",
+    "eslint": "5.16.0",
+    "eslint-config-esnext": "4.0.0",
+    "eslint-config-prettier": "4.3.0",
+    "eslint-loader": "2.1.2",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.17.3",
+    "eslint-plugin-only-warn": "1.0.1",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-vue": "5.2.2",
+    "lint-staged": "8.2.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "7.1.0",
+    "vue-template-compiler": "2.6.10",
+    "yorkie": "2.0.0"
   },
   "babel": {
     "presets": [
@@ -91,11 +91,11 @@
       "vue"
     ],
     "transform": {
-      "^.+\\.vue$": "vue-jest",
-      "^.+\\.jsx?$": "babel-jest"
+      ".+\\.vue$": "vue-jest",
+      ".+\\.jsx?$": "babel-jest"
     },
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
+      "@/(.*)$": "<rootDir>/src/$1"
     },
     "snapshotSerializers": [
       "jest-serializer-vue"
