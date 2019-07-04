@@ -43,16 +43,18 @@
     "replace-in-file": "^4.1.0",
     "slugify": "^1.2.9",
     "yeoman-generator": "^4.0.1",
-    "yosay": "^2.0.1"
+    "yosay": "^2.0.1",
+    "snyk": "^1.189.0"
   },
   "jest": {
     "testEnvironment": "node",
     "rootDir": "__tests__"
   },
   "scripts": {
-    "prepublish": "yarn audit",
+    "prepublish": "npm run snyk-protect; yarn audit",
     "pretest": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect"
   },
   "husky": {
     "hooks": {
@@ -93,5 +95,6 @@
     }
   },
   "repository": "noprotocol/generator-np-stack",
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
