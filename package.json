@@ -40,7 +40,7 @@
     "eslint-plugin-vue": "^5.2.2",
     "fs-extra": "^8.1.0",
     "merge": ">=1.2.1",
-    "replace-in-file": "^4.1.1",
+    "replace-in-file": "^4.2.0",
     "slugify": "^1.2.9",
     "yeoman-generator": "^4.0.1",
     "yosay": "^2.0.1",
