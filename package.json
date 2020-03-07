@@ -37,7 +37,7 @@
     "@vue/eslint-config-prettier": "^4.0.1",
     "chalk": "^2.1.0",
     "eslint-plugin-only-warn": "^1.0.1",
-    "eslint-plugin-vue": "^5.2.2",
+    "eslint-plugin-vue": "^6.1.0",
     "fs-extra": "^8.1.0",
     "merge": ">=1.2.1",
     "replace-in-file": "^4.1.1",
